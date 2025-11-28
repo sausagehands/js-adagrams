@@ -41,15 +41,15 @@ export const drawLetters = () => {
 
   const MAX_HAND_SIZE = 10;
 
-  while (drawnCount !== MAX_HAND_SIZE){
+  while (drawnCount !== MAX_HAND_SIZE) {
     const randIndex = helper.randInt(0, poolLength); //do i need to do poolLength-1?
     const chosenLetter = weightedPool[randIndex];
 
     let pulledLetterCount = 0;
-    if (chosenLetter in purgatoryHand){
+    if (chosenLetter in purgatoryHand) {
       pulledLetterCount = purgatoryHand[chosenLetter];
     };
-    if (pulledLetterCount < LETTER_POOL[chosenLetter]){
+    if (pulledLetterCount < LETTER_POOL[chosenLetter]) {
       drawnLetters.push(chosenLetter);
       purgatoryHand[chosenLetter] = pulledLetterCount + 1;
       drawnCount += 1;
@@ -59,7 +59,16 @@ export const drawLetters = () => {
 };
 
 export const usesAvailableLetters = (input, lettersInHand) => {
-  // Implement this method for wave 2
+  const upperWord = input.toUpperCase();
+  const inputDict = helper.convertToDict(upperWord);
+  const handDict = helper.convertToDict(lettersInHand);
+
+  for (const letter in inputDict) {
+    if (!(letter in handDict) || inputDict[letter] > handDict[letter]) {
+      return false;
+    }
+  }
+  return true;
 };
 
 export const scoreWord = (word) => {

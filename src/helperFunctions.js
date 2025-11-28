@@ -33,6 +33,7 @@ const LETTER_POOL = {
 
 export const MultiplyLetterPool = (LETTER_POOL) => {
   const weightedLetters = [];
+  //does this need to be 'of' instead of 'in'?
   for (const letter in LETTER_POOL) {
     const count = LETTER_POOL[letter];
     const groupedLetters = letter.repeat(count);
@@ -47,3 +48,12 @@ export const randInt = (min, max) => {
   const maxm = Math.floor(max);
   return Math.floor(Math.random() * (maxm - minm + 1)) + minm;
 };
+
+export const convertToDict = (item) => {
+  const dictionary = {};
+  for (const letter of item) {
+    dictionary[letter] = (dictionary[letter] || 0)+1;
+  }
+  return dictionary;
+};
+
