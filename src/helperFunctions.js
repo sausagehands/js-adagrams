@@ -52,7 +52,7 @@ export const randInt = (min, max) => {
 export const convertToDict = (item) => {
   const dictionary = {};
   for (const letter of item) {
-    dictionary[letter] = (dictionary[letter] || 0)+1;
+    dictionary[letter] = (dictionary[letter] || 0) + 1;
   }
   return dictionary;
 };
