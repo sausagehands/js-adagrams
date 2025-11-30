@@ -38,7 +38,7 @@ const SCORE_CHART = {
   'K': 5,
   'J': 8, 'X': 8,
   'Q': 10, 'Z': 10
-}
+};
 
 export const drawLetters = () => {
   const weightedPool = helper.MultiplyLetterPool(LETTER_POOL);
@@ -57,13 +57,13 @@ export const drawLetters = () => {
     let pulledLetterCount = 0;
     if (chosenLetter in purgatoryHand) {
       pulledLetterCount = purgatoryHand[chosenLetter];
-    };
+    }
     if (pulledLetterCount < LETTER_POOL[chosenLetter]) {
       drawnLetters.push(chosenLetter);
       purgatoryHand[chosenLetter] = pulledLetterCount + 1;
       drawnCount += 1;
-    };
-  };
+    }
+  }
   return drawnLetters;
 };
 
@@ -75,8 +75,8 @@ export const usesAvailableLetters = (input, lettersInHand) => {
   for (const letter in inputDict) {
     if (!(letter in handDict) || inputDict[letter] > handDict[letter]) {
       return false;
-    };
-  };
+    }
+  }
   return true;
 };
 
@@ -93,12 +93,12 @@ export const scoreWord = (word) => {
   if (upperWord.length >= 7) {
     const BONUS_SCORE = 8;
     runningScore += BONUS_SCORE;
-  };
+  }
 
   for (const letter in wordPlayed) {
     const count = wordPlayed[letter];
     runningScore += count * SCORE_CHART[letter];
-  };
+  }
   return runningScore;
 };
 
